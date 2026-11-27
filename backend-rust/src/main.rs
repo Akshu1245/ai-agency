@@ -54,7 +54,7 @@ async fn handle_contact(Json(payload): Json<ContactRequest>) -> impl IntoRespons
 
     if let (Ok(api_key), Ok(to_email)) = (env::var("RESEND_API_KEY"), env::var("CONTACT_TO_EMAIL")) {
         let from_email = env::var("CONTACT_FROM_EMAIL")
-            .unwrap_or_else(|_| "Rashi Agency <onboarding@resend.dev>".to_string());
+            .unwrap_or_else(|_| "Anukrithi <onboarding@resend.dev>".to_string());
 
         let email_body = serde_json::json!({
             "from": from_email,
@@ -62,7 +62,7 @@ async fn handle_contact(Json(payload): Json<ContactRequest>) -> impl IntoRespons
             "reply_to": email,
             "subject": format!("New Project Brief: {} — {}", need, name),
             "text": format!(
-                "New Project Brief for Rashi Agency\nName: {}\nWork Email: {}\nNeed: {}\nBudget: {}\n\nDetails:\n{}",
+                "New Project Brief for Anukrithi\nName: {}\nWork Email: {}\nNeed: {}\nBudget: {}\n\nDetails:\n{}",
                 name, email, need, budget, details
             )
         });
@@ -157,7 +157,7 @@ async fn main() {
         .and_then(|p| p.parse().ok())
         .unwrap_or(8080);
     let addr = SocketAddr::from(([0, 0, 0, 0], port));
-    println!("Rashi Agency Rust server listening on http://{}", addr);
+    println!("Anukrithi Rust server listening on http://{}", addr);
 
     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
     axum::serve(listener, app).await.unwrap();

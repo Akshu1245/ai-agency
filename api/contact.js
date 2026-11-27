@@ -1,11 +1,11 @@
 /**
  * Vercel Serverless Function: POST /api/contact
- * Receives project brief submissions from the Rashi Agency website.
+ * Receives project brief submissions from the Anukrithi website.
  *
  * Optional Vercel Environment Variables:
  * - RESEND_API_KEY: Resend API key to deliver emails directly to your inbox
  * - CONTACT_TO_EMAIL: Destination email address (e.g. you@yourdomain.com)
- * - CONTACT_FROM_EMAIL: Verified sender (defaults to "Rashi Agency <onboarding@resend.dev>")
+ * - CONTACT_FROM_EMAIL: Verified sender (defaults to "Anukrithi <onboarding@resend.dev>")
  * - WEBHOOK_URL: Optional Slack/Discord/Zapier/Make webhook URL to forward submissions
  */
 export default async function handler(req, res) {
@@ -54,12 +54,12 @@ export default async function handler(req, res) {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          from: process.env.CONTACT_FROM_EMAIL || 'Rashi Agency <onboarding@resend.dev>',
+          from: process.env.CONTACT_FROM_EMAIL || 'Anukrithi <onboarding@resend.dev>',
           to: [process.env.CONTACT_TO_EMAIL],
           reply_to: email,
           subject: `New Project Brief: ${need} — ${name}`,
           text: [
-            `New Project Brief for Rashi Agency`,
+            `New Project Brief for Anukrithi`,
             `----------------------------------`,
             `Name: ${name}`,
             `Work Email: ${email}`,
